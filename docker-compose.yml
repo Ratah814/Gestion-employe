@@ -1,5 +1,4 @@
 services:
-
   mongo:
     image: mongo
     container_name: mongo
@@ -8,8 +7,6 @@ services:
       - "27018:27017"
     volumes:
       - mongo-data:/data/db
-    environment:
-      MONGO_URI: mongodb://mongo:27017/ma_base
 
   backend:
     build: ./server
@@ -17,6 +14,8 @@ services:
     restart: always
     ports:
       - "5000:5000"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/ma_base
     depends_on:
       - mongo
 
